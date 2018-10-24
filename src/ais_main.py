@@ -1,6 +1,9 @@
 from fbchat import Client
 from fbchat.models import *
 import configparser
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def send_messenger(email, password, thread_id):
 	client = Client(email, password)
