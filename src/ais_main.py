@@ -6,9 +6,10 @@ def initialize():
 	config = configparser.ConfigParser()
 	config.readfp(open('../config/credentials.cfg'))
 	client = Client(config['DYNASLOPE-AIS']['email'], config['DYNASLOPE-AIS']['password'])
+	return client
 
 def send_messenger():
-	initialize()
+	client = initialize()
 	message_id = client.send(Message(text='Sample Message via Python-AIS'), thread_id='2199956213379612', thread_type=ThreadType.GROUP)
 
 if __name__ == "__main__":
