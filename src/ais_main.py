@@ -1,15 +1,15 @@
 from fbchat import Client
 from fbchat.models import *
-from config import credentials as settings
-
+import configparser
 
 def initialize():
-	client = Client('dynaslope.swat@gmail.com', 'asdfjkl;1234')
+	config = configparser.ConfigParser()
+	config.readfp(open('../config/credentials.cfg'))
+	client = Client(config['DYNASLOPE-AIS']['email'], config['DYNASLOPE-AIS']['password'])
 
 def send_messenger():
 	initialize()
-	message_id = client.send(Message(text='Sample acknowledgement using reaction emoji sent via Python-AIS'), thread_id='2199956213379612', thread_type=ThreadType.GROUP)
-	client.reactToMessage(message_id, MessageReaction.LOVE)
+	message_id = client.send(Message(text='Sample Message via Python-AIS'), thread_id='2199956213379612', thread_type=ThreadType.GROUP)
 
 if __name__ == "__main__":
     send_messenger()
