@@ -4,7 +4,9 @@ import configparser
 
 def send_messenger(email, password, thread_id):
 	client = Client(email, password)
-	message_id = client.send(Message(text='Sample Message via Python-AIS'), thread_id=thread_id, thread_type=ThreadType.GROUP)
+	message_id = client.fetchThreadList(offset=None, limit=20, thread_location=ThreadLocation.INBOX, before=None)
+	print message_id
+	# message_id = client.send(Message(text='Sample Message via Python-AIS'), thread_id=thread_id, thread_type=ThreadType.GROUP)
 
 if __name__ == "__main__":
 	config = configparser.ConfigParser()
