@@ -3,7 +3,7 @@ from fbchat.models import *
 import configparser
 
 def send_messenger(email, password, thread_id):
-	client = Client('%s', '%s') %(email, password)
+	client = Client(email, password)
 	message_id = client.send(Message(text='Sample Message via Python-AIS'), thread_id='%s', thread_type=ThreadType.GROUP) % thread_id
 
 if __name__ == "__main__":
